@@ -1,5 +1,9 @@
-class Day02 {
-}fun main() {
+package day2
+
+import println
+import readInput
+
+fun main() {
     fun part1(input: List<String>): Int {
         return input.size
     }

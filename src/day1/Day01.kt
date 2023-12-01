@@ -1,3 +1,9 @@
+package day1
+
+import convertStringToNumber
+import println
+import readInput
+
 fun main() {
 
     // Search for first and last occurrence of a digit in a given string
