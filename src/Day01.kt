@@ -1,9 +1,7 @@
-import java.util.*
-
 fun main() {
 
     // Search for first and last occurrence of a digit in a given string
-    // Add these two together forming a integer, sum up the total of all integers
+    // Add these two together forming an integer, sum up the total of all integers
     fun part1(input: List<String>): Int {
         val myList = mutableListOf<Int>()
 
