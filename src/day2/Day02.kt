@@ -1,22 +1,27 @@
 package day2
 
-import println
 import readInput
 
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    val input = readInput("day1/Day01")
+    val d = Day02(input)
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
+    d.part1()
+    d.part2()
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+//     val testInput = readInput("day1/Day01_test")
+//     check(d.part1() == 142)
+}
 
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+class Day02(private val input: List<String>) {
+
+    fun part1(): Int {
+        return 0
+    }
+
+    fun part2(): Int {
+        return 0
+    }
+
 }
