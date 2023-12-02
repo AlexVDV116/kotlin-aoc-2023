@@ -1,10 +1,10 @@
-package day1
+package day01
 
 import convertStringToNumber
 import readInput
 
 fun main() {
-    val input = readInput("day1/Day01")
+    val input = readInput("day01/Day01")
     val d = Day01(input)
 
     d.part1()

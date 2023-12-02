@@ -1,9 +1,9 @@
-package day3
+package day03
 
 import readInput
 
 fun main() {
-    val input = readInput("day1/Day01")
+    val input = readInput("day01/Day01")
     val d = Day03(input)
 
     d.part1()

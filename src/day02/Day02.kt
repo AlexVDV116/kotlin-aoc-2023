@@ -1,11 +1,11 @@
-package day2
+package day02
 
 import println
 import readInput
 
 fun main() {
-    val input = readInput("day2/Day02")
-    val d = Day02Refactor(input)
+    val input = readInput("day02/Day02")
+    val d = Day02(input)
 
     d.part1().println()
     d.part2().println()
@@ -15,10 +15,22 @@ fun main() {
 //     check(d.part1() == 142)
 }
 
+data class Game(
+    val id: Int,
+    val highestRedCubeCount: Int,
+    val highestBlueCubeCount: Int,
+    val highestGreenCubeCount: Int,
+    val lowestRedCubeCount: Int,
+    val lowestBlueCubeCount: Int,
+    val lowestGreenCubeCount: Int,
+    val possible: Boolean,
+    val power: Int
+)
+
 // Determine which games would have been possible if the bag
 // had been loaded with only 12 red cubes, 13 green cubes and
 // 14 blue cubes. What is the sum of the IDs of those games?
-class Day02Refactor(private val input: List<String>) {
+class Day02(private val input: List<String>) {
     private val maxRedCubes = 12
     private val maxGreenCubes = 13
     private val maxBlueCubes = 14
@@ -41,25 +53,38 @@ class Day02Refactor(private val input: List<String>) {
         return line.split(":").first().filter { it.isDigit() }.toInt()
     }
 
-    private fun String.extractColorCounts(color: String): List<Int> =
-        split(":", ";", ",")
-            .filter { it.contains(color) }
-            .map { it.filter { it.isDigit() }.toInt() }
-
-    private fun String.extractColorCountsInASet(color: String): List<Int> =
-        substring(7)
-            .split(";")
-            .flatMap { set ->
-                set.split(",")
-                    .filter { element -> element.contains(color) }
-                    .map { element -> element.filter { it.isDigit() }.toInt() }
+    private fun getHighestColorCount(color: String, line: String): Int {
+        var highestColorCount = 0
+        line.split(":", ";", ",")
+            .forEach { element ->
+                if (element.contains(color)) {
+                    element.filter { it.isDigit() }.also {
+                        val count = it.toInt()
+                        if (count > highestColorCount) highestColorCount = count
+                    }
+                }
             }
+        return highestColorCount
+    }
 
-    private fun getHighestColorCountInASet(color: String, line: String): Int =
-        line.extractColorCountsInASet(color).maxOrNull() ?: 0
-
-    private fun getHighestColorCount(color: String, line: String): Int =
-        line.extractColorCounts(color).maxOrNull() ?: 0
+    private fun getHighestColorCountInASet(color: String, line: String): Int {
+        var highestColorCountInASet = 0
+        // Remove Game ID and split string into game sets
+        line.removeRange(0, 7)
+            .split(";")
+            .forEach { set ->
+                set.split(",")
+                    .forEach { element ->
+                        if (element.contains(color)) {
+                            element.filter { it.isDigit() }.also {
+                                val count = it.toInt()
+                                if (count > highestColorCountInASet) highestColorCountInASet = count
+                            }
+                        }
+                    }
+            }
+        return highestColorCountInASet
+    }
 
     // Convert each line to a game object
     private fun convertToGame(line: String): Game {
