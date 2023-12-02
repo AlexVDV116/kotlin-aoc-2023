@@ -64,7 +64,6 @@ fun main() {
                 // Create a new modified line using the stringBuilder
                 val modifiedLine = stringBuilder.toString()
 
-
                 // Append the new modified line to a new modified input list
                 println("modifiedline = $modifiedLine")
                 modifiedInput.add(modifiedLine)
