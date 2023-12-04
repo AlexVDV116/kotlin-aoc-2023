@@ -38,7 +38,8 @@ class Day02Refactor(private val input: List<String>) {
     }
 
     private fun getGameIndex(line: String): Int {
-        return line.split(":").first().filter { it.isDigit() }.toInt()
+        //return line.split(":").first().filter { it.isDigit() }.toInt()
+        return line.removePrefix("Game ").takeWhile { it.isDigit() }.toInt()
     }
 
     private fun String.extractColorCounts(color: String): List<Int> =
