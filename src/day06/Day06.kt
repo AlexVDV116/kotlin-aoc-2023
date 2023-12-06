@@ -9,10 +9,6 @@ fun main() {
 
     d.part1().println()
     d.part2().println()
-
-    // test if implementation meets criteria from the description, like:
-//     val testInput = readInput("day1/Day01_test")
-//     check(d.part1() == 142)
 }
 
 /* RACE RULES
@@ -28,6 +24,7 @@ fun main() {
 // duration = milliseconds
 // record = millimeters
 data class Race(val duration: Long, val record: Long)
+
 class Day06(private val input: List<String>) {
 
     fun part1(): Int {
