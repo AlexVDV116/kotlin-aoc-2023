@@ -9,7 +9,7 @@ fun main() {
     d.part1()
     //d.part2()
 
-    // test if implementation meets criteria from the description, like:
+//    // test if implementation meets criteria from the description, like:
 //     val testInput = readInput("day1/Day01_test")
 //     check(d.part1() == 142)
 }
