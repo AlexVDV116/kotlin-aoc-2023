@@ -15,24 +15,23 @@ fun main() {
 //     check(d.part1() == 142)
 }
 
+data class Block(val src: Long, val dst: Long, val length: Long)
+data class SeedsMap(val from: String, val to: String, val blocks: List<Block>)
+
 class Day05(private val input: List<String>) {
 
-    fun part1(): List<Long> {
-        val seed = input[0]
+    fun part1(): Int {
+
+        // Parse the seed from the input into a list of Long
+        val seeds = input[0]
             .substringAfter(":")
             .split(" ")
             .filter { it.isNotBlank() }
             .map { it.toLong() }
 
-        data class Block(val src: Long, val dst: Long, val length: Long)
-        data class SeedsMap(val from: String, val to: String, val blocks: List<Block>)
-
-        // Drop the first 2 elements
-        // Fold the input, with an initial value of mutableListOf mutableListOfString
-        // If the element is blank create add a new mutableListOf
-        // else add the element to the last list
-        // then use map to parse each element to the data class
+        // Parse the maps from the input into a list of SeedsMap
         val maps = input.drop(2)
+            //
             .fold(mutableListOf(mutableListOf<String>())) { acc, string ->
                 if (string.isBlank())
                     acc.add(mutableListOf())
@@ -48,7 +47,25 @@ class Day05(private val input: List<String>) {
                 }
                 SeedsMap(from, to, blocks)
             }
-        return seed
+        println(seeds)
+        println(maps)
+
+        // seed-to-soil -> SeedsMap
+        // 50 98 2 (src, dst, length) -> Block
+        // 51 99
+
+
+        // 52 50 48 (src, dst, length) -> Block
+        // 53 51
+        // ...
+        // 99 98
+
+
+        // For every from value in a SeedsMap, find the corresponding to value using the blocks
+        fun convert(maps: List<SeedsMap>, seeds: List<Long>): List<Long> {
+
+        }
+        return 1
     }
 
     fun part2(): Int {
